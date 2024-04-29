@@ -6,3 +6,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post("/post/create",[PostController::class,"createPost"]);
 Route::put("/post/update/{id}",[PostController::class,"updatePost"]);
+Route::get("/post/getAll",[PostController::class,"getAllPost"]);

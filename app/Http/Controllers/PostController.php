@@ -6,6 +6,7 @@ use App\Models\Post;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -72,5 +73,17 @@ class PostController extends Controller
                 ]
             );
         }
+    }
+
+    public function getAllPost(Request $request): JsonResponse
+    {
+        $posts = Post::all();
+        return Response()->json(
+            [
+                "success" => true,
+                "posts" => $posts,
+                "message" => "لیست پست ها با موفیت دریافت شد"
+            ]
+        );
     }
 }
