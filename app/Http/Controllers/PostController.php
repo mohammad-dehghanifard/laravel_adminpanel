@@ -75,7 +75,7 @@ class PostController extends Controller
         }
     }
 
-    public function getAllPost(Request $request): JsonResponse
+    public function getAllPost(): JsonResponse
     {
         $posts = Post::all();
         return Response()->json(
@@ -85,5 +85,26 @@ class PostController extends Controller
                 "message" => "لیست پست ها با موفیت دریافت شد"
             ]
         );
+    }
+
+    public function deletePost($id): JsonResponse
+    {
+        try {
+            $post = Post::find($id);
+            $post->delete();
+            return Response() -> json(
+                [
+                    "success" => true,
+                    "message" => "پست مورد نظر با موفقیت حذف شد!"
+                ]
+            );
+        } catch (Exception $exception) {
+            return Response() -> json(
+                [
+                    "success" => false,
+                    "message" => "پست مورد پیدا نشد!"
+                ]
+            );
+        }
     }
 }
